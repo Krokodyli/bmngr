@@ -50,7 +50,7 @@ function add {
 function remove { 
 	if [ "$1" == "" ]
 	then
-		exit
+		exit 0
 	fi
 	touch $BMNGRPATH/.bmngrFiles
 	grep -vx "$(abspath $1)" "$BMNGRPATH/bmngrFiles" > "$BMNGRPATH/.bmngrFiles"
@@ -62,17 +62,17 @@ function exists {
 	if [ "$1" == "" ]
 	then
 		echo "No such file"
-		exit
+		exit 0
 	fi
 	if [ ! -e $(abspath $1) ]
 	then
 		echo "No such file"
-		exit
+		exit 0
 	fi
 	if [ -d $(abspath $1) ]
 	then
 		echo "It's a directory, not file"
-		exit
+		exit 0
 	fi
 }
 
@@ -101,20 +101,20 @@ if [ "$1" == "start" ]
 then
 	stop &>/dev/null
 	start &>/dev/null
-	exit
+	exit 0
 fi
 
 if [ "$1" == "stop" ]
 then
 	stop &>/dev/null
-	exit
+	exit 0
 fi
 
 if [ "$1" == "add" ]
 then
 	exists $2
 	add $2 &>/dev/null
-	exit
+	exit 0
 fi
 
 if [ "$1" == "remove" ]
@@ -123,7 +123,7 @@ then
 	exists $2
 	remove $2 &>/dev/null
 	start &>/dev/null
-	exit
+	exit 0
 fi
 
 if [ "$1" == "removeallimsureofit" ]
@@ -131,27 +131,27 @@ then
 	stop &>/dev/null
 	echo -n "" > "$BMNGRPATH/bmngrFiles"
 	start &>/dev/null
-	exit
+	exit 0
 fi
 
 if [ "$1" == "restart" ]
 then
 	stop &>/dev/null
 	start &>/dev/null
-	exit
+	exit 0
 fi
 
 
 if [ "$1" == "list" ]
 then
 	list
-	exit
+	exit 0
 fi
 
 if [ "$1" == "help" ]
 then
 	showHelp
-	exit
+	exit 0
 fi
 
 echo "No such command"

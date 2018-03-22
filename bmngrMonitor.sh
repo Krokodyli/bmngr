@@ -10,6 +10,7 @@ then
 	exit
 fi
 
+sh $BMNGRPATH/bmngrBackup.sh "$1" 
 MODDATE="$(date -r $1 +"%s")"
 
 while true;

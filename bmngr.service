@@ -1,0 +1,10 @@
+[Unit]
+Description=Backup Manager
+
+[Service]
+Type=oneshot
+ExecStart=/home/krokodyli/.bmngr/bmngr.sh start
+RemainAfterExit=true
+
+[Install]
+WantedBy=default.target

@@ -7,6 +7,7 @@ fi
 cp bmngrBackup.sh $HOME/.bmngr/bmngrBackup.sh
 cp bmngrMonitor.sh $HOME/.bmngr/bmngrMonitor.sh
 cp bmngr.sh $HOME/.bmngr/bmngr.sh
+cp bmngr.service $HOME/.bmngr/bmngr.service
 touch $HOME/.bmngr/bmngrFiles
 mkdir $HOME/.bmngr/backups
 
@@ -20,11 +21,9 @@ then
 	echo "alias bmngr=\"sh $HOME/.bmngr/bmngr.sh\"" >> $HOME/.bashrc
 fi
 
-echo -n "Add autostart line to your .xprofile? y/n "
+echo -n "Add autostart (systemctl)? y/n "
 read ans
 if [ "$ans" == "y" ]
 then
-	echo "" >> $HOME/.xprofile
-	echo "# BMNGR AUTOSTART" >> $HOME/.xprofile
-	echo "$HOME/.bmngr/bmngr.sh start & disown" >> $HOME/.xprofile
+	systemctl --user enable --now $HOME/.bmngr/bmngr.service
 fi
