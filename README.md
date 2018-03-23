@@ -11,6 +11,3 @@ bmngr.service is configuration for systemctl.
 bmngrMonitor.sh monitores a file and if the file changed it starts bmngrBackup.sh.
 
 bmngrBackup.sh backups a file, checks if there are more than 7 backups and remove older ones.
-
-IMPORTANT
-Remember to change username in path in bmngr.service before installation.
